@@ -1,8 +1,8 @@
 const cors = require("cors");
 const express = require("express");
 const app = express();
-
-routes = require("./routes");
+const routes = require("./routes");
+const products = require("./routes/products");
 
 
 app.use(express.json());
@@ -15,6 +15,7 @@ app.use((req, res, next) =>{
 
 app.use(cors());
 app.use("/", routes);
+app.use("/products", products);
 
 
 module.exports = app;

@@ -25,8 +25,8 @@ const Products = database.define('products', {
     client_email:{
         type: DataTypes.STRING,
     },
-
-});
+},
+{timestamps: false});
 
 Products.sync();
 
