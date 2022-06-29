@@ -13,6 +13,26 @@ const getAllProducts = async (req, res) => {
     }
 };
 
+const setReserved = async (req, res) => {
+    try{
+        const id = req.params.id;
+        const {name, email} = req.body;
+        const product = await Products.update({
+            product_reserved:true, 
+            client_name: name, 
+            client_email: email},
+            {where:{product_id:id}})
+
+        product && product[0] > 0 ? res.status(200).send({message:"Produto reservado!"}) 
+        : res.status(404).send({message: `Produto de id ${id} não encontrado!`})
+    
+    } catch(error){
+        res.status(500).send({message: 'Error'})
+    }
+};
+
 module.exports = {
     getAllProducts,
+    setReserved
 }
+
