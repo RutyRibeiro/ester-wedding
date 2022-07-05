@@ -2,7 +2,9 @@ const Products = require("../models/products")
 
 const getAllProducts = async (req, res) => {
     try{
-        const products = await Products.findAll()
+        const products = await Products.findAll({
+            order:[['product_reserved','ASC']]
+        })
 
         products && products.length > 0 ? res.status(200).send(products) : res.status(204).send()
     } catch (error){
@@ -15,8 +17,8 @@ const getAllProducts = async (req, res) => {
 
 const setReserved = async (req, res) => {
     try{
-        const id = req.params.id;
-        const {name, email} = req.body;
+        // const id = req.params.id;
+        const {id, name, email} = req.body;
         const product = await Products.update({
             product_reserved:true, 
             client_name: name, 
