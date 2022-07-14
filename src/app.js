@@ -4,7 +4,6 @@ const app = express();
 const routes = require("./routes");
 const products = require("./routes/products");
 
-
 app.use(express.json());
 
 app.use((req, res, next) =>{
